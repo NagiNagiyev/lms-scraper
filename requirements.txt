@@ -2,3 +2,4 @@ Flask
 flask_cors
 selenium
 gunicorn
+webdriver-manager

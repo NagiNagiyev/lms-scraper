@@ -5,11 +5,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
 
 def scrape_data(username:str, password:str, semester:str):
     firefox_options = Options()
     firefox_options.add_argument('--headless')
-    robot = webdriver.Firefox(executable_path='./geckodriver', options=firefox_options)
+    service = Service(GeckoDriverManager().install())
+    robot = webdriver.Firefox(service=service, options=firefox_options)
 
     # Link of the website for scraping 
     link = "http://lms.adnsu.az/adnsuEducation/login.jsp"
@@ -98,6 +101,4 @@ def scrape_data(username:str, password:str, semester:str):
         # Make program go back where all subjects are located
         fennler_siyahisi = wait.until(EC.visibility_of_element_located((By.PARTIAL_LINK_TEXT, 'Fənnlər siyahısı')))
         fennler_siyahisi.click()
-    print(data)
     return data
-scrape_data('nagi.nagiyev', 'Nagi2003', 'Autumn')
