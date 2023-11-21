@@ -9,7 +9,7 @@ from selenium.webdriver.firefox.options import Options
 def scrape_data(username:str, password:str, semester:str):
     firefox_options = Options()
     firefox_options.add_argument('--headless')
-    robot = webdriver.Firefox(options=firefox_options)
+    robot = webdriver.Firefox(executable_path='./geckodriver', options=firefox_options)
 
     # Link of the website for scraping 
     link = "http://lms.adnsu.az/adnsuEducation/login.jsp"
